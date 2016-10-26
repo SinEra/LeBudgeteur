@@ -1,4 +1,7 @@
 <?php
+
+	require_once("dao/UserDAO.php");
+
 	session_start();
 
 	abstract class CommonAction{
@@ -6,6 +9,7 @@
 		public static $VISIBILITY_MEMBER = 1;
 
 		private $pageVisibility;
+		private $user = null;
 
 		public function __construct($pageVisibility){
 			$this->pageVisibility = $pageVisibility;
@@ -29,14 +33,19 @@
 			return $_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC;
 		}
 
-		public function getUsername() {
-			$username = "Invité";
+		public function getUser() {
 
-			if ($this->isLoggedIn()) {
-				$username = $_SESSION["username"];
+			if(empty($_SESSION["userId"])){
+
+				return null;
 			}
 
-			return $username;
+			if($this->user !== null){
+				return $this->user;
+			}
+
+			$this->user = UserDAO::trouver($_SESSION["userId"]);
+			return $this->user;
 		}
 
 		// Design pattern : Template method

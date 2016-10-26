@@ -1,3 +1,11 @@
+<?php 
+
+	require_once("action/LoginAction.php");
+	$action = new LoginAction();
+	$action->execute();
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
