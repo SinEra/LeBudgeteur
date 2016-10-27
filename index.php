@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title>Le Budgeteur</title>
 	</head>
 	<body>
 		<h1>Bienvenue
@@ -20,10 +20,10 @@
 		?> 
 		! </h1>
 
-		<input type="submit" value="Transactions"/>
-		<input type="submit" value="Graphiques"/>
-		<input type="submit" value="Calendrier"/>
-		<input type="submit" value="Déconnexion"/>
+		<a href="transactions.php">Transactions</a>
+		<a href="graphiques.php">Graphiques</a>
+		<a href="calendrier.php">Calendrier</a>
+		<a href="logout.php">Déconnexion</a>
 
 	</body>
 </html>
