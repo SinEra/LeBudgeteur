@@ -23,7 +23,7 @@
 		<a href="transactions.php">Transactions</a>
 		<a href="graphiques.php">Graphiques</a>
 		<a href="calendrier.php">Calendrier</a>
-		<a href="logout.php">Déconnexion</a>
+		<a href="deconnexion.php">Déconnexion</a>
 
 	</body>
 </html>

@@ -13,7 +13,6 @@
 
 			if($ligne){
 				if(password_verify($password, $ligne['password'])){
-					echo 132;
 					return $ligne['userId'];
 				}
 			}

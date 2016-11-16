@@ -36,9 +36,8 @@
 					exit;
 				}
 			}
-
-			$this->listeTransactions = TransactionsDAO::lister();
+			$this->listeTransactions = TransactionsDAO::lister($this->getUser()["userId"], true);
 			$this->listeCategories = CategorieDAO::lister();
-			$this->listeComptes = CompteDAO::lister();
+			$this->listeComptes = CompteDAO::lister($this->getUser()["userId"]);
 		}
 	}
