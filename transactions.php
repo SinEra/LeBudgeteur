@@ -14,6 +14,14 @@
 	<body>
 		<h1>Transactions</h1>
 		<form action="transactions.php" method="post" onsubmit="return validate()">
+			<div>Type de transaction: </div>
+			<div>
+			<select name="typeTransaction">
+			<option value="1" selected>Dépense</option>
+			<option value="2">Revenu</option>
+			</select>
+			<div>
+
 			<div>Date: </div>
 			<div><input type="date" name="date"><div>
 
@@ -48,12 +56,14 @@
 
 				?>		
 			</select>
-
+			
+			<input type="submit" value="AjouterCategorie" name="ajouterCategorie"/>
 			<input type="submit" value="Ajouter" name="ajouter"/>
 			<input type="submit" value="Terminer" name="terminer"/>
 		</form>
 		<table>
 			<tr>
+				<td>Type de transaction</td>
 				<td>Date</td>
 				<td>Description</td>
 				<td>Categorie</td>
@@ -64,6 +74,7 @@
 
 			<?php foreach($action->listeTransactions as $transaction) { ?> 
 				<tr>
+					<td> <?= $transaction["typeTransactionNom"] ?> </td>
 					<td> <?= $transaction["date"] ?> </td>
 					<td> <?= $transaction["description"]?> </td> 
 					<td> <?= $transaction["categorieNom"]?> </td>
