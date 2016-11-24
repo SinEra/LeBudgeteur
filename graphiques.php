@@ -21,39 +21,75 @@
 	<form action="graphiques.php" method="post" onsubmit="return validate()">
 
 		<div>Nombre de graphiques (Maximum: 4)</div>
-			<select name="nbGraphiques">
-				<option value="1">1</option>	
+			<select id="nbGraphiques" name="nbGraphiques">
+				<option value="1" selected>1</option>	
 				<option value="2">2</option>	
 				<option value="3">3</option>	
 				<option value="4">4</option>	
 			</select>
 
+	<div class="date" >
+		<h2>Graphique 1 </h2>
 		<div>Date début: </div>
-		<div><input type="date" name="datedebut"><div>
+		<div><input type="date" name="datedebut1" value="<?=$action->datedebut1?>"></div>
 		
 		<div>Date fin: </div>
-		<div><input type="date" name="datefin"><div>
+		<div><input type="date" name="datefin1" value="<?=$action->datefin1?>"></div>
+	</div>
 
-		<input type="submit" value="Afficher" name="afficher"/>
+	<div class="date" >
+		<h2>Graphique 2 </h2>
+		<div>Date début: </div>
+		<div><input type="date" name="datedebut2" value="<?=$action->datedebut2?>"></div>
+		
+		<div>Date fin: </div>
+		<div><input type="date" name="datefin2" value="<?=$action->datefin2?>"></div>
+	</div>
+
+	<div class="date" >
+		<h2>Graphique 3 </h2>
+		<div>Date début: </div>
+		<div><input type="date" name="datedebut3" value="<?=$action->datedebut3?>"></div>
+		
+		<div>Date fin: </div>
+		<div><input type="date" name="datefin3" value="<?=$action->datefin3?>"></div>
+	</div>
+
+	<div class="date" >
+		<h2>Graphique 4 </h2>
+		<div>Date début: </div>
+		<div><input type="date" name="datedebut4" value="<?=$action->datedebut4?>"></div>
+		
+		<div>Date fin: </div>
+		<div><input type="date" name="datefin4" value="<?=$action->datefin4?>"></div>
+	</div>
+		<input type="submit" value="afficher" name="afficher"/>
 	</form>
 	
 	<?php 
-	//Si la variable action graphique1_data existe on affiche un graphique sinon rien
-		if(isset($action->graphique1_data)){
+		//$i va être l'index de chaque élément
+		foreach ($action->graphique_data as $i => $data){
 	?>
 
 	<div style="width:400px">
-		<canvas id="graphique1" width="100" height="100"></canvas>
+		<canvas id="graphique<?= $i ?>" width="100" height="100"></canvas>
 	</div>
 	<script>
 	
-		CreatePieChart("graphique1", <?= $action->graphique1_data ?>)
+		CreatePieChart("graphique<?= $i ?>", <?= $data ?>)
 	
 	</script>
 
 	<?php 
 		}
 	?>
+
+	<script>
+	//Math.max, le plus grand entre 1 et le count
+	//Si on arrive pour la premiere fois, graphique_data sera vide donc le count est à zero mais on veut quand même un form
+	//Si ya 2 graphiques, on prend le max entre 1 et 2 et on fait apparaitre les 2 forms
+		afficherGraphiques(Math.max(1, <?= count($action->graphique_data) ?>));
+	</script>
 
 </body>
 </html>
