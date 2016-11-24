@@ -4,8 +4,6 @@
 
 	class IndexAction extends CommonAction {
 
-		public $listeTransactions = array();
-
 		public function __construct() {
 			parent::__construct(CommonAction::$VISIBILITY_MEMBER);
 		}

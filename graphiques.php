@@ -28,10 +28,10 @@
 			</select>
 
 		<div>Date début: </div>
-		<div><input type="date" name="date"><div>
+		<div><input type="date" name="datedebut"><div>
 		
 		<div>Date fin: </div>
-		<div><input type="date" name="date"><div>
+		<div><input type="date" name="datefin"><div>
 
 		<input type="submit" value="Afficher" name="afficher"/>
 	</form>
