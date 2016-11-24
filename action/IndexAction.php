@@ -16,8 +16,8 @@
 			$data = array();
 
 			foreach($this->listeRevenusDepenses as $listeRevenuDepense) {
-				$labels[] = $listeRevenuDepense[1];
-				$data[] = $listeRevenuDepense[0];
+				$labels[] = $listeRevenuDepense[0];
+				$data[] = $listeRevenuDepense[1];
 			}
 
 			$data = array(

@@ -10,31 +10,30 @@
 		}
 
 		protected function executeAction(){
+
+			if(!empty($_POST["datedebut"]) && !empty($_POST["datefin"])){
+				$this->listeTransactionsCat = GraphiqueDAO::listerParCategorie($this->getUser()["userId"], $_POST["datedebut"], $_POST["datefin"]);
+
+				$labels = array();
+				$data = array();
+
+				foreach($this->listeTransactionsCat as $listeTransactionCat) {
+					$labels[] = $listeTransactionCat[0];
+					$data[] = $listeTransactionCat[1];
+				}
+
+				$data = array(
+					"labels" => $labels,
+					"datasets" => array(
+						array(
+							"data" => $data
+							)
+						)
+					);
+				
+				$this->graphique1_data = json_encode($data);
+			}
+
 			
-			$rows = GraphiqueDAO::
-
-			TransactionsDAO::lister($this->getUser()["userId"], true);
-
-			$labels = array();
-			foreach($rows as $row) {
-				$labels[] = $row[0];
-			}
-
-			$data = array();
-			foreach($rows as $row) {
-				$data[] = $row[1];
-			}
-
-			$data = array(
-				"labels" => $labels,
-				"datasets" => array(
-					array(
-						"data" => $data
-					)
-				)
-			);
-			//$data["label"] = array(...)
-
-			$this->graphique1_data = json_encode($data);
 		}
 	}

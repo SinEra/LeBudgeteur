@@ -8,8 +8,8 @@
 
 			$requete = $bdd->prepare('
 				SELECT 
-					SUM(transaction.montant) AS total, 
-					typeTransaction.nom AS typeTransactionNom 
+					typeTransaction.nom AS typeTransactionNom, 
+					SUM(transaction.montant) AS total
 					FROM transaction 
 					INNER JOIN typetransaction ON typetransaction.typeTransactionId = transaction.typeTransactionId 
 					INNER JOIN compte ON compte.compteId = transaction.compteId 
@@ -29,7 +29,7 @@
 			return $listeRevenusDepenses;
 		}
 
-		public static function listerParCartegorie($userId, $dateDebut, $dateFin){
+		public static function listerParCategorie($userId, $dateDebut, $dateFin){
 			global $bdd;
 
 			$requete = $bdd->prepare('
@@ -37,11 +37,20 @@
 					categorie.nom AS categorie, 
 					SUM(transaction.montant) AS total
 				FROM transaction
-				INNER JOIN compte ON compte.compteId = transaction.transactionId
-				INNER JOIN categorie ON transaction.categorieId = categorie.categorieId
+				INNER JOIN compte ON compte.compteId = transaction.compteId
+				INNER JOIN categorie ON categorie.categorieId = transaction.categorieId
 				WHERE compte.userId = ?
+				AND date >= ?
+ 				AND date < ?
 				GROUP BY transaction.categorieId
 				');
 			$requete->execute(array($userId, $dateDebut, $dateFin));
+
+			$listeParCategorie = array();
+			while($ligne = $requete->fetch()){
+				$listeParCategorie[] = $ligne;
+			}
+
+			return $listeParCategorie;
 		}
 	}

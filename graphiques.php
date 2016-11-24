@@ -11,6 +11,7 @@
 <head>
 	<title>Graphiques</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/graphiques.js"></script>
 </head>
 <body>
@@ -36,11 +37,23 @@
 		<input type="submit" value="Afficher" name="afficher"/>
 	</form>
 	
+	<?php 
+	//Si la variable action graphique1_data existe on affiche un graphique sinon rien
+		if(isset($action->graphique1_data)){
+	?>
+
 	<div style="width:400px">
 		<canvas id="graphique1" width="100" height="100"></canvas>
 	</div>
 	<script>
+	
 		CreatePieChart("graphique1", <?= $action->graphique1_data ?>)
+	
 	</script>
+
+	<?php 
+		}
+	?>
+
 </body>
 </html>
