@@ -1,35 +1,31 @@
 <?php 
 
+	require_once("partial/header.php");
+
 	require_once("action/TransactionsAction.php");
 	$action = new TransactionsAction();
 	$action->execute();
 
 ?>
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Transactions</title>
-	</head>
-	<body>
 		<h1>Transactions</h1>
+
 		<form action="transactions.php" method="post" onsubmit="return validate()">
+			
 			<div>Type de transaction: </div>
-			<div>
 			<select name="typeTransaction">
-			<option value="1" selected>Dépense</option>
-			<option value="2">Revenu</option>
+				<option value="1" selected>Dépense</option>
+				<option value="2">Revenu</option>
 			</select>
-			<div>
 
 			<div>Date: </div>
 			<div><input type="date" name="date"><div>
 
 			<div>Description: </div>
-			<div><input type="text" name="description" id="description"></div>
+			<div><input type="text" name="description"></div>
 
 			<div>Montant: </div>
-			<div><input type="text" name="montant" id="montant"></div>
+			<div><input type="text" name="montant"></div>
 
 			<div>Catégories:</div>
 			<select name="categories">
@@ -42,6 +38,8 @@
 
 				?>
 			</select>
+
+			<input type="submit" value="Ajouter une catégorie" name="ajouterCategorie"/>
 
 			<!-- Sous-Categorie -->
 
@@ -57,10 +55,10 @@
 				?>		
 			</select>
 			
-			<input type="submit" value="AjouterCategorie" name="ajouterCategorie"/>
 			<input type="submit" value="Ajouter" name="ajouter"/>
 			<input type="submit" value="Terminer" name="terminer"/>
 		</form>
+
 		<table>
 			<tr>
 				<td>Type de transaction</td>
@@ -85,6 +83,6 @@
 			<?php } ?>
 		</table>
 
+<?php
 
-	</body>
-</html>
+	require_once("partial/footer.php");

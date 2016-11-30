@@ -5,13 +5,17 @@
 	class TransactionsDAO {
 
 		public static function ajouter($typetransaction,$date,$description,$montant,$categorie,$typepaiement){
+			
 			global $bdd;
-			$requete = $bdd->prepare('INSERT INTO transaction(typeTransactionId, date, description, montant, categorieId, compteId, brouillon) 
+			
+			$requete = $bdd->prepare('
+				INSERT INTO transaction(typeTransactionId, date, description, montant, categorieId, compteId, brouillon) 
 				VALUES(?, ?, ?, ?, ?, ?, ?)');
 			$requete->execute(array($typetransaction, $date, $description, $montant, $categorie, $typepaiement, true));
 		}
 
 		public static function lister($userId, $brouillon){
+			
 			global $bdd;
 			
 			$requete = $bdd->prepare('
@@ -33,11 +37,11 @@
 				WHERE 
 					compte.userId = ? AND
 					brouillon = ?');
-			
 			$requete->execute(array($userId,$brouillon));
 
 			$listeTransactions = array();
 			while($ligne = $requete->fetch()){
+
 				$listeTransactions[] = $ligne;
 			}
 
@@ -47,9 +51,10 @@
 		public static function enleverBrouillon(){
 			global $bdd;
 			
-			$requete = $bdd->prepare('UPDATE transaction
-			SET brouillon = false
-			WHERE brouillon = true');	
+			$requete = $bdd->prepare('
+				UPDATE transaction
+				SET brouillon = false
+				WHERE brouillon = true');	
 
 			$requete->execute();
 		}

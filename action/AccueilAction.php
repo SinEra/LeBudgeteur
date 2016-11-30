@@ -1,10 +1,12 @@
 <?php 
+
 	require_once("action/CommonAction.php");
 	require_once("dao/GraphiqueDAO.php");
 
-	class IndexAction extends CommonAction {
+	class AccueilAction extends CommonAction {
 
 		public function __construct() {
+
 			parent::__construct(CommonAction::$VISIBILITY_MEMBER);
 		}
 
@@ -16,6 +18,7 @@
 			$data = array();
 
 			foreach($this->listeRevenusDepenses as $listeRevenuDepense) {
+				
 				$labels[] = $listeRevenuDepense[0];
 				$data[] = $listeRevenuDepense[1];
 			}
@@ -29,6 +32,6 @@
 				)
 			);
 
-			$this->graphique1_data = json_encode($data);
+			$this->graphique_data = json_encode($data);
 		}
 	}

@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+*{/*Sélecteur universel*/
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background-color: #DAA520;
+	height:100%;
+}
+
+body{
+	width:80%;
+	height:100%;
+	background-color: #FFFF99;
+	margin:auto;
+	padding:25px;
+}
+
+h1{
+	text-align: center;
+	margin:10px;
+}
+
+h2, h3{
+	text-align: center;
+	margin-bottom:5px;
+}
+
+.formulaire{
+	margin:auto;
+	padding:15px;
+	border: 3px solid black;
+	width:250px;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.bouton{
+	margin:5px;
+}
+
+.erreur{
+	font-size: 15px;
+	color:red;
+	text-align: center;
+	margin-bottom: 5px
+}
+
+#formCompte{
+	float: left;
+}
+
+.center{
+	margin:auto;
+}

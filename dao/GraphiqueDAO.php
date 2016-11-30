@@ -4,25 +4,26 @@
 	class GraphiqueDAO {
 
 		public static function listerRevenusDepenses($userId){
+			
 			global $bdd;
 
 			$requete = $bdd->prepare('
 				SELECT 
 					typeTransaction.nom AS typeTransactionNom, 
 					SUM(transaction.montant) AS total
-					FROM transaction 
-					INNER JOIN typetransaction ON typetransaction.typeTransactionId = transaction.typeTransactionId 
-					INNER JOIN compte ON compte.compteId = transaction.compteId 
-					WHERE compte.userId = ?
-					AND date >= DATE_FORMAT(NOW(),\'%Y-%m-01\')
- 					AND date < DATE_FORMAT(NOW(),\'%Y-%m-01\') + INTERVAL 1 MONTH
-					GROUP BY typeTransactionNom
-					');
+				FROM transaction 
+				INNER JOIN typetransaction ON typetransaction.typeTransactionId = transaction.typeTransactionId 
+				INNER JOIN compte ON compte.compteId = transaction.compteId 
+				WHERE compte.userId = ?
+				AND date >= DATE_FORMAT(NOW(),\'%Y-%m-01\')
+				AND date < DATE_FORMAT(NOW(),\'%Y-%m-01\') + INTERVAL 1 MONTH
+				GROUP BY typeTransactionNom');
 
 			$requete->execute(array($userId));
 
 			$listeRevenusDepenses = array();
 			while($ligne = $requete->fetch()){
+
 				$listeRevenusDepenses[] = $ligne;
 			}
 
@@ -30,6 +31,7 @@
 		}
 
 		public static function listerParCategorie($userId, $dateDebut, $dateFin){
+			
 			global $bdd;
 
 			$requete = $bdd->prepare('
@@ -42,12 +44,12 @@
 				WHERE compte.userId = ?
 				AND date >= ?
  				AND date < ?
-				GROUP BY transaction.categorieId
-				');
+				GROUP BY transaction.categorieId');
 			$requete->execute(array($userId, $dateDebut, $dateFin));
 
 			$listeParCategorie = array();
 			while($ligne = $requete->fetch()){
+				
 				$listeParCategorie[] = $ligne;
 			}
 
