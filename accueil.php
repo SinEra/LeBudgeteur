@@ -8,21 +8,24 @@
 
 ?>
 
-		<h1>Bienvenue
+		<h1>Le budgeteur</h1>
+		<h2>Bienvenue
 
 		<?php 
-			 $action->getUser()["firstName"];
+			 echo $action->getUser()["firstName"];
 		?> 
-		! </h1>
+		! </h2>
 
-		<nav>
-			<a href="transactions.php">Transactions</a>
-			<a href="graphiques.php">Graphiques</a>
-			<a href="calendrier.php">Calendrier</a>
-			<a href="deconnexion.php">Déconnexion</a>
-		</nav>
+		<ul id="nav">
+			<li><a href="transactions.php">Transactions</a></li>
+			<li><a href="graphiques.php">Graphiques</a></li>
+			<li><a href="calendrier.php">Calendrier</a></li>
+			<li><a href="modifierCompte.php">Modifier les comptes</a></li>
+			<li><a href="modifierProfil.php">Modifier le profil</a></li>
+			<li><a href="deconnexion.php">Déconnexion</a></li>
+		</ul>
 
-		<div style="width:400px">
+		<div style="width:400px" id="graphiqueAccueil">
 			<canvas id="graphique" width="100" height="100"></canvas>
 		</div>
 

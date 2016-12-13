@@ -8,9 +8,10 @@
 
 ?>
 
-		<h1>Transactions</h1>
+		<h1>Le budgeteur</h1>
+		<h2>Transactions</h2>
 
-		<form action="transactions.php" method="post" onsubmit="return validate()">
+		<form action="transactions.php" method="post" onsubmit="return validate()" >
 			
 			<div>Type de transaction: </div>
 			<select name="typeTransaction">
@@ -41,7 +42,17 @@
 
 			<input type="submit" value="Ajouter une catégorie" name="ajouterCategorie"/>
 
-			<!-- Sous-Categorie -->
+			<div>Sous-Catégories:</div>
+			<select name="souscategories">
+				<?php
+					foreach ($action->listeCategories as $categorie) {
+						?>
+							<option value="<?= $categorie["categorieId"] ?>"> <?= $categorie["nom"] ?> </option>
+						<?php
+					}
+
+				?>
+			</select>
 
 			<div>Type de paiement:</div>
 			<select name="typePaiement">
@@ -61,13 +72,13 @@
 
 		<table>
 			<tr>
-				<td>Type de transaction</td>
-				<td>Date</td>
-				<td>Description</td>
-				<td>Categorie</td>
-				<td>Sous-Categorie</td>
-				<td>Type de paiement</td>
-				<td>Montant</td>
+				<th>Type de transaction</th>
+				<th>Date</th>
+				<th>Description</th>
+				<th>Categorie</th>
+				<th>Sous-Categorie</th>
+				<th>Type de paiement</th>
+				<th>Montant</th>
 			</tr>
 
 			<?php foreach($action->listeTransactions as $transaction) { ?> 

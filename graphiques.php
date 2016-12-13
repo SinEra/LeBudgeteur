@@ -56,6 +56,7 @@
 				<div><input type="date" name="datefin4" value="<?=$action->datefin4?>"></div>
 			</div>
 				<input type="submit" value="afficher" name="afficher"/>
+				<input type="submit" value="Terminer" name="terminer"/>
 		</form>
 	
 		<?php 

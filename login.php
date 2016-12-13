@@ -37,7 +37,8 @@
 		
 			<input type="submit" value="Connexion"/ class="bouton">
 
-			<div><font color="black">Vous êtes nouveaux? <a href="inscriptionInfos.php">Cliquez ici</a></div>
+			<div><font color="black">Vous êtes nouveaux? <a href="inscriptionInfos.php" id="cliquez">Cliquez ici</a></div>
+			<div><font color="black">Vous avez oublié votre mot de passe? <a href="oublimdp.php" id="cliquez">Cliquez ici</a></div>
 		
 		</form>
 

@@ -52,6 +52,7 @@
 			}
 			
 			$this->listeTransactions = TransactionsDAO::lister($this->getUser()["userId"], true);
+			print_r( $this->listeTransactions);
 			$this->listeCategories = CategorieDAO::lister($this->getUser()["userId"]);
 			$this->listeComptes = CompteDAO::lister($this->getUser()["userId"]);
 		}

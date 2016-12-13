@@ -4,9 +4,10 @@
 	require_once("dao/UserDAO.php");
 	require_once("dao/QuestionDAO.php");
 
-	class InscriptionInfosAction extends CommonAction{
+	class ModifierProfilAction extends CommonAction{
 
 		public $listeQuestions = array();
+		public $userinfo = array();
 
 		public function __construct(){
 
@@ -20,17 +21,18 @@
 				if(!empty($_POST["nom"]) &&
 					!empty($_POST["prenom"]) &&
 					!empty($_POST["courriel"]) &&
-					!empty($_POST["reponse"]) &&
-					!empty($_POST["password"]) &&
-					!empty($_POST["passwordConfirm"])){
+					!empty($_POST["reponse"])){
 
-					if($_POST["password"] === $_POST["passwordConfirm"]){
+					if(!empty($_POST["passoword"]) && !empty($_POST["passwordConfirm"])){
+						if($_POST["password"] === $_POST["passwordConfirm"]){
 
-						UserDAO::ajouter($_POST["nom"], $_POST["prenom"], $_POST["courriel"], $_POST["question"], $_POST["reponse"],$_POST["password"]);
-
-						header("location:inscriptionComptes.php");
-						exit;
+							UserDAO::changermdp($this->getUser()["userId"], $_POST["password"]);
+						}
 					}
+				UserDAO::updateUser($this->getUser()["userId"], $_POST["nom"], $_POST["prenom"], $_POST["courriel"], $_POST["question"], $_POST["reponse"]);
+
+				header("location:modifierProfil.php");
+							exit;
 				}
 			}
 
