@@ -23,16 +23,16 @@
 					!empty($_POST["courriel"]) &&
 					!empty($_POST["reponse"])){
 
-					if(!empty($_POST["passoword"]) && !empty($_POST["passwordConfirm"])){
-						if($_POST["password"] === $_POST["passwordConfirm"]){
+					UserDAO::updateUser($this->getUser()["userId"], $_POST["nom"], $_POST["prenom"], $_POST["courriel"], $_POST["question"], $_POST["reponse"]);
 
-							UserDAO::changermdp($this->getUser()["userId"], $_POST["password"]);
-						}
+					header("location:modifierProfil.php");
+					exit;
+				}
+				if(!empty($_POST["password"]) && !empty($_POST["passwordConfirm"])){
+					if($_POST["password"] === $_POST["passwordConfirm"]){
+
+						UserDAO::changermdp($this->getUser()["userId"], $_POST["password"]);
 					}
-				UserDAO::updateUser($this->getUser()["userId"], $_POST["nom"], $_POST["prenom"], $_POST["courriel"], $_POST["question"], $_POST["reponse"]);
-
-				header("location:modifierProfil.php");
-							exit;
 				}
 			}
 

@@ -4,7 +4,7 @@
 	require_once("dao/CompteDAO.php");
 	require_once("dao/TypeCompteDAO.php");
 
-	class ModifierComptesAction extends CommonAction{
+	class ModifierCompteAction extends CommonAction{
 
 		public $listeComptes = array();
 		public $listeTypeComptes = array();

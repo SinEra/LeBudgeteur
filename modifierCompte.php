@@ -2,18 +2,60 @@
 
 	require_once("partial/header.php");
 
-	require_once("action/ProfilAction.php");
-	$action = new ProfilAction();
+	require_once("action/ModifierCompteAction.php");
+	$action = new ModifierCompteAction();
 	$action->execute();
 
 ?>
 
 		<h1>Profil</h1>
 		<h2>Vos comptes</h2>
+
+		<!--Liste des comptes-->
+
+		<table id="listeCompte">
+			<tr>
+				<th>Type de compte</th>
+				<th>Compte</th>
+				<th>Montant</th>
+				<th></th>
+			</tr>
+			
+			<?php foreach($action->listeComptes as $compte) { ?> 
+				<tr>
+					<td> 
+						<input type="hidden" name="compteId" value="<?= $compte["compteId"] ?>" />
+						<select class="input" name="typeCompte" style="display:none;" name="typeCompte">
+							<?php foreach ($action->listeTypeComptes as $typeCompte) { ?>
+								<option 
+									value="<?= $typeCompte["typeCompteId"] ?>"
+									<?php if($typeCompte["nom"] == $compte["typeCompte"]) { ?> selected <?php } ?>
+									> <?= $typeCompte["nom"] ?> </option>
+							<?php } ?>
+						</select>
+						<div class="value value-typeCompte">
+							<?= $compte["typeCompte"]?>
+						</div> 
+					</td>
+					<td> 
+						<div class="value value-nom"> <?= $compte["nom"] ?> </div>
+						<input class="input" type="text" name="nom" style="display:none;" value="<?= $compte["nom"] ?>"> 
+					</td>
+					<td> 
+						<div class="value value-montant"> <?= $compte["montant"]?> </div>
+						<input class="input" type="text" name="montant" style="display:none;" value="<?= $compte["montant"]?>">
+					</td>
+					<td>
+						<a class="input sauvegarder-compte" style="display:none;" href="#">[Sauvegarder]</a> 
+						<a class="value modifier-compte" href="#">[Modifier]</a> 
+					</td> 
+				</tr>
+			<?php } ?>
+		</table>
 	
 		<!-- Ajouter un compte -->
 
-		<form action="profilComptes.php" method="post" onsubmit="return validate()" class="formulaire" id="formAjoutCompte">
+		<form action="modifierCompte.php" method="post" onsubmit="return validate()" class="formulaire" id="formAjoutCompte">
 		
 			<div>Nom du compte: </div>
 			<input type="text" name="nom">
@@ -34,53 +76,6 @@
 
 		</form>
 
-		<!-- Modifier un compte -->
-
-			<select name="typePaiement">
-				<?php
-					foreach ($action->listeComptes as $compte) {
-						?>
-							<option value="<?= $compte["compteId"] ?>"> <?= $compte["nom"] ?> </option>
-						<?php } ?>		
-			</select>
-
-			<input type="submit" value="Modifier" name="modifier" class="bouton"/>
-			<input type="submit" value="Retour" name="retour" class="bouton"/>
-
-		<!--Liste des comptes-->
-
-
-
-		<table id="tableCompte">
-			<tr>
-				<th>Compte</th>
-				<th>Montant</th>
-			</tr>
-			
-			<?php foreach($action->listeComptes as $compte) { ?> 
-				<tr>
-					<td> <?= $compte["nom"] ?> </td>
-					<td> <?= $compte["montant"]?> </td> 
-				</tr>
-			<?php } ?>
-		</table>
-
 <?php
 
 	require_once("partial/footer.php");
-
-
-	$(document).ready(function animation(){
-                 
-  $('#form_create').hide();
-                     
-  $('#hidding').toggle(
-    function show(){
-      $('#form_create').slideDown("slow");
-    },
-    function hide(){
-      $('#form_create').slideUp("normal");
-    }
-  );
-                 
-})
