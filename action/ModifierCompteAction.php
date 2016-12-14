@@ -19,9 +19,10 @@
 
 			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-				if(!empty($_POST["ajouter"])) {
+				if (!empty($_POST["ajouter"])) {
 
-					if(!empty($_POST["nom"]) && 
+					if (!empty($_POST["nom"]) && 
+					
 						!empty($_POST["montant"])) {
 
 						CompteDAO::ajouter(
@@ -30,7 +31,8 @@
 							$_POST["montant"], 
 							$_POST["nom"]);
 					}
-				} else if(!empty($_POST["Modifier"])){
+				} else if (!empty($_POST["Modifier"])){
+					
 					header("location:accueil.php?=" . $_POST("typePaiement"));
 					exit;
 				}

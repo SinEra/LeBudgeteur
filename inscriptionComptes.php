@@ -1,6 +1,6 @@
 <?php 
 
-	require_once("partial/header.php");
+	require_once("partial/header-login-inscription.php");
 
 	require_once("action/InscriptionComptesAction.php");
 	$action = new InscriptionComptesAction();
@@ -8,45 +8,60 @@
 
 ?>
 
-		<h1>Inscription</h1>
-		<h2>Vos comptes</h2>
+		<h1 class="text-center">Inscription</h1>
+		<h2 class="text-center">Vos comptes</h2>
 	
-		<form action="inscriptionComptes.php" method="post" onsubmit="return validate()" class="formulaire" id="formCompte">
-		
-			<div>Nom du compte: </div>
-			<input type="text" name="nom">
-		
-			<div>Type de compte:</div>
-			<select name="typeCompte">
-				<?php
-					foreach ($action->listeTypeComptes as $typeCompte) {
-						?>
-							<option value="<?= $typeCompte["typeCompteId"] ?>"> <?= $typeCompte["nom"] ?> </option>
-							<?php } ?>
-			</select>
+		<div class="col-md-5">
 
-			<div>Montant:</div>
-			<div><input type="text" name="montant"></div>
-
-			<input type="submit" value="Ajouter" name="ajouter" class="bouton"/>
-			<input type="submit" value="Terminer" name="terminer" class="bouton"/>
-
-		</form>
-
-		<table id="tableCompte">
-			<tr>
-				<th>Compte</th>
-				<th>Montant</th>
-			</tr>
+			<form action="inscriptionComptes.php" method="post" onsubmit="return validate()" 
+				class="inscriptioncompte panel panel-default">
 			
-			<?php foreach($action->listeComptes as $compte) { ?> 
-				<tr>
-					<td> <?= $compte["nom"] ?> </td>
-					<td> <?= $compte["montant"]?> </td> 
-				</tr>
-			<?php } ?>
-		</table>
+				<div class="panel-heading"><strong>Informations du compte</strong></div>
+				
+				<div class="panel-body">
+					<div class="form-group">
+						<label for="nom">Nom du compte</label>
+						<input class="form-control" placeholder="Nom du compte" type="text" name="nom" id="nom">
+					</div>
+					
+					<div class="form-group">
+						<label for="type">Type de compte</label>
+						<select name="typeCompte" id="type">
+						<?php foreach ($action->listeTypeComptes as $typeCompte) { ?>
+							<option value="<?= $typeCompte["typeCompteId"] ?>"> <?= $typeCompte["nom"] ?> </option>
+						<?php } ?>
+						</select>	
+					</div>
+				
+					<div class="form-group">
+						<label for="montant">Montant</label>
+						<input class="form-control" placeholder="Montant" type="text" name="montant" id="montant">
+					</div>
 
+					<input type="submit" value="Ajouter" name="ajouter" class="btn btn-default"/>
+					<input type="submit" value="Terminer" name="terminer" class="btn btn-default"/>
+				</div>
+			</form>
+		</div>
+
+		<div class="col-md-5 col-md-offset-2">
+			
+			<table class="table table-hover table-striped">
+				<tr>
+					<th>Type</th>
+					<th>Compte</th>
+					<th>Montant</th>
+				</tr>
+				
+				<?php foreach($action->listeComptes as $compte) { ?> 
+					<tr>
+						<td> <?= $compte["typeCompte"] ?> </td>
+						<td> <?= $compte["nom"] ?> </td>
+						<td class="text-right"> <?= $compte["montant"]?>$ </td> 
+					</tr>
+				<?php } ?>
+			</table>
+		</div>
 <?php
 
 	require_once("partial/footer.php");
