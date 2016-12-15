@@ -54,3 +54,9 @@ h1, h2 {
 	width: 400px;
 	margin:auto;
 }
+
+img {
+	width:75%;
+	display: block;
+	margin:auto;
+}
