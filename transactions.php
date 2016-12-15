@@ -74,7 +74,7 @@
 		</div>
 
 		<div class="col-md-8">
-			<table class="tabletrans table table-hover table-striped">
+			<table class="table table-hover table-striped">
 				<thead>
 					<tr>
 						<th>Type de transaction</th>

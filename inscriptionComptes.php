@@ -49,19 +49,22 @@
 		<div class="col-md-5 col-md-offset-2">
 			
 			<table class="table table-hover table-striped">
-				<tr>
-					<th>Type</th>
-					<th>Compte</th>
-					<th>Montant</th>
-				</tr>
-				
-				<?php foreach($action->listeComptes as $compte) { ?> 
+				<thead>
 					<tr>
-						<td> <?= $compte["typeCompte"] ?> </td>
-						<td> <?= $compte["nom"] ?> </td>
-						<td class="text-right"> <?= $compte["montant"]?>$ </td> 
+						<th>Type</th>
+						<th>Compte</th>
+						<th>Montant</th>
 					</tr>
-				<?php } ?>
+				</thead>
+				<tbody>
+					<?php foreach($action->listeComptes as $compte) { ?> 
+						<tr>
+							<td> <?= $compte["typeCompte"] ?> </td>
+							<td> <?= $compte["nom"] ?> </td>
+							<td class="text-right"> <?= $compte["montant"]?>$ </td> 
+						</tr>
+					<?php } ?>
+				</tbody>
 			</table>
 		</div>
 <?php

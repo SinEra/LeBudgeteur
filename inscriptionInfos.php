@@ -50,7 +50,7 @@
 					<label for="questions">Questions secrètes</label>
 					<select class="form-control" name="question" id="question">
 					<?php foreach ($action->listeQuestions as $question) { ?>
-						<option selected value="<?= $question["questionId"] ?>"> <?= $question["question"] ?> </option>
+						<option <?php if ( $question["questionId"] == 0) { ?> selected <?php } ?> value="<?= $question["questionId"] ?>"> <?= $question["question"] ?> </option>
 					<?php } ?>
 					</select>
 				</div>
