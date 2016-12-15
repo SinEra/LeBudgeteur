@@ -1,11 +1,11 @@
 <?php 
 
-	require_once("partial/header.php");
-
 	require_once("action/ModifierProfilAction.php");
 	$action = new ModifierProfilAction();
 	$action->execute();
 
+
+	require_once("partial/header.php");
 ?>
 
 		<h2 class="text-center">Modification de profil</h2>

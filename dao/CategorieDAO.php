@@ -23,6 +23,26 @@
 			return $listeCategories;
 		}
 
+		public static function listerSousCategorie($userId, $categorieId){
+			
+			global $bdd;
+
+			$requete = $bdd->prepare('
+				SELECT categorieId, nom 
+				FROM categorie 
+				WHERE (userId IS NULL OR userId = ?) 
+				AND categorieParentId = ?');
+			$requete->execute(array($userId, $categorieId));
+
+			$listeCategories = array(array("categorieId" => "", "nom" => ""));
+			while($ligne = $requete->fetch()){
+				
+				$listeCategories[] = $ligne;
+			}
+
+			return $listeCategories;
+		}
+
 		public static function ajouterCat($nom, $userId, $parent){
 			
 			global $bdd;

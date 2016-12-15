@@ -10,6 +10,7 @@
 		public $listeTransactions = array();
 		public $listeCategories = array();
 		public $listeComptes = array();
+		public $listeSousCategories = array();
 
 		public function __construct(){
 
@@ -34,11 +35,16 @@
 						!empty($_POST["categories"]) &&
 						!empty($_POST["typePaiement"])) {
 
+						$categorieId = $_POST["categories"];
+						if(!empty($_POST["sousCategories"])) {
+							$categorieId = $_POST["sousCategories"];
+						}
+
 						TransactionsDAO::ajouter($_POST["typeTransaction"], 
 							$_POST["date"], 
 							$_POST["description"], 
 							$_POST["montant"], 
-							$_POST["categories"], 
+							$categorieId, 
 							$_POST["typePaiement"]);
 					}
 				}
@@ -53,6 +59,11 @@
 			
 			$this->listeTransactions = TransactionsDAO::lister($this->getUser()["userId"], true);
 			$this->listeCategories = CategorieDAO::lister($this->getUser()["userId"]);
+			if (!empty($this->listeCategories)) {
+				$this->listeSousCategories = 
+					CategorieDAO::listerSousCategorie($this->getUser()["userId"], 
+													  $this->listeCategories[0]["categorieId"]);
+			}
 			$this->listeComptes = CompteDAO::lister($this->getUser()["userId"]);
 		}
 	}

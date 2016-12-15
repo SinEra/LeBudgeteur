@@ -1,11 +1,11 @@
 <?php 
 
-	require_once("partial/header-login-inscription.php");
-
 	require_once("action/InscriptionComptesAction.php");
 	$action = new InscriptionComptesAction();
 	$action->execute();
 
+
+	require_once("partial/header-login-inscription.php");
 ?>
 
 		<h1 class="text-center">Le budgeteur</h1>

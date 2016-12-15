@@ -1,11 +1,11 @@
 <?php 
 
-	require_once("partial/header-login-inscription.php");
-
 	require_once("action/InscriptionInfosAction.php");
 	$action = new InscriptionInfosAction();
 	$action->execute();
 
+
+	require_once("partial/header-login-inscription.php");
 ?>
 
 		<h1 class="text-center">Le budgeteur</h1>
@@ -27,7 +27,8 @@
 
 				<?php } else if ($action->champVide ===true){ ?>
 					<div class="alert alert-danger" role="alert">Veuillez remplir tous les champs s'il vous plaît</div>
-				
+				<?php } else if ($action->emailIncorrect === true) { ?>
+					<div class="alert alert-danger" role="alert">Veuillez entrer un courriel valide.</div>
 				<?php } ?>
 
 				<div class="form-group">

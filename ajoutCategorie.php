@@ -1,11 +1,10 @@
 <?php 
 
-	require_once("partial/header.php");
-
 	require_once("action/AjoutCategorieAction.php");
 	$action = new AjoutCategorieAction();
 	$action->execute();
 
+	require_once("partial/header.php");
 ?>
 		<h2 class="text-center">Nouvelle-catégorie</h2>
 
@@ -29,12 +28,6 @@
 						<option value="<?= $categorie["categorieId"] ?>"> <?= $categorie["nom"] ?> </option>
 					<?php } ?>
 					</select>
-				</div>
-			
-				<div class="form-group">
-					<label for="souscategorie">Nom de la sous-catégorie</label>
-					<input class="form-control" placeholder="Nom de la sous-catégorie" type="text" name="souscategorie" 
-						id="souscategorie">
 				</div>
 			
 				<input type="submit" value="Ajouter" name="ajouter" class="btn btn-default"/>

@@ -1,10 +1,10 @@
 <?php 
 
-	require_once("partial/header.php");
-
 	require_once("action/ChangementmdpAction.php");
 	$action = new ChangementmdpAction();
 	$action->execute();
+
+	require_once("partial/header.php");
 
 ?>
 

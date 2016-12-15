@@ -40,5 +40,7 @@ function afficherGraphiques(nbGraphiques){
 	//Exemple 3, on garde entre 0 et 3
 	$(".date").slice(0, nbGraphiques).show();
 	//On garde le reste sauf les 3 premiers
-	$(".date").slice(nbGraphiques).hide();
+	var toHide = $(".date").slice(nbGraphiques);
+	toHide.hide();
+	toHide.find('input').val('');
 }

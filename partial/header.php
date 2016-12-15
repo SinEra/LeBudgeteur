@@ -39,15 +39,15 @@
 					<a class="navbar-brand" href="accueil.php">Le Budgeteur</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li><a>Bienvenue</a></li>
-					<li><a href="transactions.php">Transactions</a></li>
-					<li><a href="graphiques.php">Graphiques</a></li>
-					<li><a href="calendrier.php">Calendrier</a></li>
+					<li><a>Bienvenue <?= $action->getUser()["firstName"] ?></a></li>
+					<li class="<?php if (strpos($_SERVER["REQUEST_URI"], "/transactions.php")!== false) {echo 'active';} ?>"><a href="transactions.php">Transactions</a></li>
+					<li class="<?php if (strpos($_SERVER["REQUEST_URI"], "/graphiques.php")!== false) {echo 'active';} ?>"><a href="graphiques.php">Graphiques</a></li>
+					<li class="<?php if (strpos($_SERVER["REQUEST_URI"], "/calendrier.php")!== false) {echo 'active';} ?>"><a href="#">Calendrier</a></li>
 					<li role="presentation" class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profil <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="modifierCompte.php">Modifier les comptes</a></li>
 							<li><a href="modifierProfil.php">Modifier le profil</a></li>
+							<li><a href="modifierCompte.php">Modifier les comptes</a></li>
 						</ul>
 					</li>
 					<li><a href="deconnexion.php">Déconnexion</a></li>

@@ -28,4 +28,26 @@ $(function(){
 				ligne.find(".value").show();		
 			}})
 	});
+
+	$(".listeCategorie").change(function(){
+
+		var sousCatListe = $('.listeSousCategorie');
+		var categorieId = $(".listeCategorie").val();
+		sousCatListe.empty();
+		sousCatListe.val('');
+
+		$.ajax({
+			url: "listeSousCategorie.php?categorieId=" + categorieId,
+			method: "GET",
+			dataType: "json",
+			success: function(liste) {
+				liste.forEach(function(cat) {
+					sousCatListe.append($('<option>', {
+						value: cat.categorieId,
+						text: cat.nom
+					}));
+				});
+			}
+		})
+	})
 });

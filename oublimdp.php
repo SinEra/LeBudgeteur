@@ -1,11 +1,11 @@
 <?php 
 
-	require_once("partial/header.php");	
-
 	require_once("action/OubliMdpAction.php");
 	$action = new OubliMdpAction();
 	$action->execute();
 
+
+	require_once("partial/header.php");	
 ?>
 
 		<h1>Le budgeteur</h1>

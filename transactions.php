@@ -1,15 +1,14 @@
 <?php 
 
-	require_once("partial/header.php");
-
 	require_once("action/TransactionsAction.php");
 	$action = new TransactionsAction();
 	$action->execute();
 
+	require_once("partial/header.php");
 ?>
 		<h2 class="text-center">Transactions</h2>
 
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<form action="transactions.php" method="post" onsubmit="return validate()" 
 				class="formtrans login panel panel-default">
 				
@@ -27,7 +26,7 @@
 					
 					<div class="form-group">
 						<label for="date">Date</label>
-						<input class="form-control" placeholder="" type="date" name="date" id="date">
+						<input class="form-control" value="<?= date('Y-m-d') ?>" type="date" name="date" id="date">
 					</div>
 
 					<div class="form-group">
@@ -41,10 +40,9 @@
 					</div>
 
 					<div class="form-group">
-						<label for="categorie">Catégorie</label> 
-						<input type="submit" value="Ajouter une catégorie" name="ajouterCategorie" 
-						class="btn btn-default btn-xs"/>
-						<select class="form-control" name="categories" id="categorie">
+						<label for="categorie">Catégorie <input type="submit" value="Ajouter une catégorie" name="ajouterCategorie" class="btn btn-default btn-xs"/></label> 
+						
+						<select class="form-control listeCategorie" name="categories" id="categorie">
 						<?php foreach ($action->listeCategories as $categorie) { ?>
 							<option value="<?= $categorie["categorieId"] ?>"> <?= $categorie["nom"] ?> </option>
 						<?php } ?>
@@ -53,8 +51,8 @@
 
 					<div class="form-group">
 						<label for="souscategorie">Sous-catégorie</label>
-						<select class="form-control" name="souscategories" id="souscategorie">
-						<?php foreach ($action->listeCategories as $categorie) { ?>
+						<select class="form-control listeSousCategorie" name="sousCategories" id="souscategorie">
+						<?php foreach ($action->listeSousCategories as $categorie) { ?>
 							<option value="<?= $categorie["categorieId"] ?>"> <?= $categorie["nom"] ?> </option>
 						<?php } ?>
 						</select>
@@ -75,29 +73,30 @@
 			</form>
 		</div>
 
-		<div class="col-md-9">
+		<div class="col-md-8">
 			<table class="tabletrans table table-hover table-striped">
-				<tr>
-					<th>Type de transaction</th>
-					<th>Date</th>
-					<th>Description</th>
-					<th>Categorie</th>
-					<th>Sous-Categorie</th>
-					<th>Type de paiement</th>
-					<th>Montant</th>
-				</tr>
-
-				<?php foreach($action->listeTransactions as $transaction) { ?> 
+				<thead>
 					<tr>
-						<td> <?= $transaction["typeTransactionNom"] ?> </td>
-						<td> <?= $transaction["date"] ?> </td>
-						<td> <?= $transaction["description"]?> </td> 
-						<td> <?= $transaction["categorieNom"]?> </td>
-						<td> Sous-Categorie </td>  
-						<td> <?= $transaction["compteNom"]?> </td> 
-						<td class="text-right"> <?= $transaction["montant"]?> $</td> 
+						<th>Type de transaction</th>
+						<th>Date</th>
+						<th>Description</th>
+						<th>Categorie</th>
+						<th>Type de paiement</th>
+						<th>Montant</th>
 					</tr>
-				<?php } ?>
+				</thead>
+				<tbody>
+					<?php foreach($action->listeTransactions as $transaction) { ?> 
+						<tr>
+							<td class="col-md-1"> <?= $transaction["typeTransactionNom"] ?> </td>
+							<td> <?= $transaction["date"] ?> </td>
+							<td> <?= $transaction["description"]?> </td> 
+							<td> <?= $transaction["categorieNom"]?> </td>
+							<td> <?= $transaction["compteNom"]?> </td> 
+							<td class="text-right col-md-1"> <?= $transaction["montant"]?> $</td> 
+						</tr>
+					<?php } ?>
+				</tbody>
 			</table>
 		</div>
 

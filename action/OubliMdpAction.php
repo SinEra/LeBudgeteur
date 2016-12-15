@@ -27,6 +27,8 @@
 					header("location:changermdp.php");
 					exit;
 				}else{
+					$this->question = $ligne["question"];
+					$this->email = $_POST["email"];
 					$this->error = true;
 				}		
 			}

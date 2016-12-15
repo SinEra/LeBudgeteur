@@ -11,6 +11,7 @@
 		public $emailExistant = false;
 		public $mdpIncorrect = false;
 		public $champVide = false;
+		public $emailIncorrect = false;
 
 		public function __construct(){
 
@@ -40,19 +41,23 @@
 
 					if ($_POST["password"] === $_POST["passwordConfirm"]){
 
-						try {
-						UserDAO::ajouter($_POST["nom"], 
-							$_POST["prenom"], 
-							$_POST["courriel"], 
-							$_POST["question"], 
-							$_POST["reponse"],
-							$_POST["password"]);
+						if(filter_var($_POST["courriel"], FILTER_VALIDATE_EMAIL)) {
+							try {
+								UserDAO::ajouter($_POST["nom"], 
+									$_POST["prenom"], 
+									$_POST["courriel"], 
+									$_POST["question"], 
+									$_POST["reponse"],
+									$_POST["password"]);
 
-						header("location:inscriptionComptes.php");
-						exit;
-						//Si erreur lors de ajouter (Email non unique)
-						} catch (Exception $e) {
-							$this->emailExistant = true;							
+								header("location:inscriptionComptes.php");
+								exit;
+							//Si erreur lors de ajouter (Email non unique)
+							} catch (Exception $e) {
+								$this->emailExistant = true;							
+							}
+						} else {
+							$this->emailIncorrect = true;
 						}
 
 					} else {
