@@ -14,9 +14,9 @@
 
 			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-				if(!empty($_POST["ajouter"])) {
+				if (!empty($_POST["ajouter"])) {
 
-					if(!empty($_POST["categorie"])) {
+					if (!empty($_POST["categorie"])) {
 
 						$categoriesParent = $_POST["categoriesParent"];
 						if (empty($categoriesParent)) {
@@ -30,7 +30,7 @@
 					}
 				}
 
-				if(!empty($_POST["retour"])){
+				if (!empty($_POST["retour"])){
 					
 					header("location:transactions.php");
 					exit;

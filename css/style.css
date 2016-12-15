@@ -1,1 +1,34 @@
-style.css
+.navbar-default{
+	background-image: none;
+}
+
+.formtrans {
+	float:left;
+}
+
+.tabletrans{
+	float:right;
+}
+
+.ajoutcompte{
+	margin:auto;
+	width:350px;
+}
+
+h2{
+	color:#f2b632;
+}
+
+.btn{
+	margin-bottom: 5px;
+}
+
+.date{
+	width:200px;
+	float:left;
+}
+
+.modificationprofilform{
+	margin:auto;
+	width:400px;	
+}

@@ -4,9 +4,9 @@ body {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-h1, h2, h3 {
-	color:#f2b632;
+h1, h2 {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	color:#f2b632;
 	font-weight: bold;
 	margin:30px;
 }
@@ -30,8 +30,8 @@ h1, h2, h3 {
 }
 
 .inscriptioncompte {
-	float:left;
 	width:350px;
+	float:left;
 }
 
 .table {

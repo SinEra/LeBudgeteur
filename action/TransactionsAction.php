@@ -20,15 +20,15 @@
 
 			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-				if(!empty($_POST["ajouterCategorie"])){
+				if (!empty($_POST["ajouterCategorie"])){
 
 					header("location:ajoutCategorie.php");
 					exit;
 				}
 
-				if(!empty($_POST["ajouter"])) {
+				if (!empty($_POST["ajouter"])) {
 
-					if(!empty($_POST["date"]) && 
+					if (!empty($_POST["date"]) && 
 						!empty($_POST["description"]) &&
 						!empty($_POST["montant"]) &&
 						!empty($_POST["categories"]) &&
@@ -43,7 +43,7 @@
 					}
 				}
 
-				if(!empty($_POST["terminer"])){
+				if (!empty($_POST["terminer"])){
 
 					TransactionsDAO::enleverBrouillon();
 					header("location:accueil.php");
@@ -52,7 +52,6 @@
 			}
 			
 			$this->listeTransactions = TransactionsDAO::lister($this->getUser()["userId"], true);
-			print_r( $this->listeTransactions);
 			$this->listeCategories = CategorieDAO::lister($this->getUser()["userId"]);
 			$this->listeComptes = CompteDAO::lister($this->getUser()["userId"]);
 		}

@@ -85,11 +85,5 @@
 
 				$this->graphique_data[] = json_encode($data);
 			}
-
-			if(!empty($_POST["terminer"])){
-
-				header("location:accueil.php");
-				exit;
-			};
 		}
 	}

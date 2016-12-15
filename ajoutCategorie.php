@@ -7,31 +7,39 @@
 	$action->execute();
 
 ?>
+		<h2 class="text-center">Nouvelle-catégorie</h2>
 
-	<h1>Ajout d'une catégorie</h1>
+		<form action="ajoutCategorie.php" method="post" onsubmit="return validate()" 
+			class="ajoutcompte panel panel-default">
+		
+			<div class="panel-heading"><strong>Ajout d'une catégorie</strong></div>
 
-	<form action="ajoutCategorie.php" method="post" onsubmit="return validate()">
+			<div class="panel-body">
+				<div class="form-group">
+					<label for="categorie">Nom de la catégorie</label>
+					<input class="form-control" placeholder="Nom de la catégorie" type="text" name="categorie" 
+						id="categorie">
+				</div>
 			
-			<div>Catégorie: </div>
-			<div><input type="text" name="categorie"><div>
-
-			<div>Catégories parent:</div>
-			<select name="categoriesParent">
-				<option value="">Aucune catégorie parent</option>
-				<?php
-					foreach ($action->listeCategories as $categorie) {
-						?>
-							<option value="<?= $categorie["categorieId"] ?>"> <?= $categorie["nom"] ?> </option>
-						<?php
-					}
-				?>
-			</select>
-
-			<div>Sous-Categorie: </div>
-			<div><input type="text" name="sousCategorie"></div>
+				<div class="form-group">
+					<label for="categorieparent">Nom de la catégorie parent</label>
+					<select class="form-control" name="categoriesParent" id="categorieparent">
+						<option value="">Aucune catégorie parent</option>
+					<?php foreach ($action->listeCategories as $categorie) { ?>
+						<option value="<?= $categorie["categorieId"] ?>"> <?= $categorie["nom"] ?> </option>
+					<?php } ?>
+					</select>
+				</div>
 			
-			<input type="submit" value="Ajouter" name="ajouter"/>
-			<input type="submit" value="Retour à la page de transactions" name="retour"/>
+				<div class="form-group">
+					<label for="souscategorie">Nom de la sous-catégorie</label>
+					<input class="form-control" placeholder="Nom de la sous-catégorie" type="text" name="souscategorie" 
+						id="souscategorie">
+				</div>
+			
+				<input type="submit" value="Ajouter" name="ajouter" class="btn btn-default"/>
+				<input type="submit" value="Retour à la page de transactions" name="retour" class="btn btn-default"/>
+			</div>
 		</form>
 
 <?php 

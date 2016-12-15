@@ -7,92 +7,99 @@
 	$action->execute();
 
 ?>
+		<h2 class="text-center">Transactions</h2>
 
-		<h1>Le budgeteur</h1>
-		<h2>Transactions</h2>
+		<div class="col-md-3">
+			<form action="transactions.php" method="post" onsubmit="return validate()" 
+				class="formtrans login panel panel-default">
+				
+				<div class="panel-heading"><strong>Ajouter une transaction</strong></div>
 
-		<form action="transactions.php" method="post" onsubmit="return validate()" >
-			
-			<div>Type de transaction: </div>
-			<select name="typeTransaction">
-				<option value="1" selected>Dépense</option>
-				<option value="2">Revenu</option>
-			</select>
+				<div class="panel-body">
 
-			<div>Date: </div>
-			<div><input type="date" name="date"><div>
+					<div class="form-group">
+						<label for="type">Type de transaction</label>
+						<select class="form-control" name="typeTransaction" id="type">
+							<option value="1" selected>Dépense</option>
+							<option value="2">Revenu</option>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label for="date">Date</label>
+						<input class="form-control" placeholder="" type="date" name="date" id="date">
+					</div>
 
-			<div>Description: </div>
-			<div><input type="text" name="description"></div>
+					<div class="form-group">
+						<label for="desc">Description</label>
+						<input class="form-control" placeholder="Description" type="text" name="description" id="desc">
+					</div>
 
-			<div>Montant: </div>
-			<div><input type="text" name="montant"></div>
+					<div class="form-group">
+						<label for="montant">Montant</label>
+						<input class="form-control" placeholder="Montant" type="text" name="montant" id="montant">
+					</div>
 
-			<div>Catégories:</div>
-			<select name="categories">
-				<?php
-					foreach ($action->listeCategories as $categorie) {
-						?>
+					<div class="form-group">
+						<label for="categorie">Catégorie</label> 
+						<input type="submit" value="Ajouter une catégorie" name="ajouterCategorie" 
+						class="btn btn-default btn-xs"/>
+						<select class="form-control" name="categories" id="categorie">
+						<?php foreach ($action->listeCategories as $categorie) { ?>
 							<option value="<?= $categorie["categorieId"] ?>"> <?= $categorie["nom"] ?> </option>
-						<?php
-					}
+						<?php } ?>
+						</select>
+					</div> 
 
-				?>
-			</select>
-
-			<input type="submit" value="Ajouter une catégorie" name="ajouterCategorie"/>
-
-			<div>Sous-Catégories:</div>
-			<select name="souscategories">
-				<?php
-					foreach ($action->listeCategories as $categorie) {
-						?>
+					<div class="form-group">
+						<label for="souscategorie">Sous-catégorie</label>
+						<select class="form-control" name="souscategories" id="souscategorie">
+						<?php foreach ($action->listeCategories as $categorie) { ?>
 							<option value="<?= $categorie["categorieId"] ?>"> <?= $categorie["nom"] ?> </option>
-						<?php
-					}
+						<?php } ?>
+						</select>
+					</div>
 
-				?>
-			</select>
-
-			<div>Type de paiement:</div>
-			<select name="typePaiement">
-				<?php
-					foreach ($action->listeComptes as $compte) {
-						?>
+					<div class="form-group">
+						<label for="typePaiement">Type de paiement</label>
+						<select class="form-control" name="typePaiement" id="souscategorie">
+						<?php foreach ($action->listeComptes as $compte) { ?>
 							<option value="<?= $compte["compteId"] ?>"> <?= $compte["nom"] ?> </option>
-						<?php
-					}
+						<?php } ?>		
+						</select>
+					</div>
+					
+					<input type="submit" value="Ajouter" name="ajouter" class="btn btn-default"/>
+					<input type="submit" value="Terminer" name="terminer" class="btn btn-default"/>
+				</div>
+			</form>
+		</div>
 
-				?>		
-			</select>
-			
-			<input type="submit" value="Ajouter" name="ajouter"/>
-			<input type="submit" value="Terminer" name="terminer"/>
-		</form>
-
-		<table>
-			<tr>
-				<th>Type de transaction</th>
-				<th>Date</th>
-				<th>Description</th>
-				<th>Categorie</th>
-				<th>Sous-Categorie</th>
-				<th>Type de paiement</th>
-				<th>Montant</th>
-			</tr>
-
-			<?php foreach($action->listeTransactions as $transaction) { ?> 
+		<div class="col-md-9">
+			<table class="tabletrans table table-hover table-striped">
 				<tr>
-					<td> <?= $transaction["typeTransactionNom"] ?> </td>
-					<td> <?= $transaction["date"] ?> </td>
-					<td> <?= $transaction["description"]?> </td> 
-					<td> <?= $transaction["categorieNom"]?> </td>
-					<td> Sous-Categorie </td>  
-					<td> <?= $transaction["compteNom"]?> </td> 
-					<td> <?= $transaction["montant"]?> </td> 
+					<th>Type de transaction</th>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Categorie</th>
+					<th>Sous-Categorie</th>
+					<th>Type de paiement</th>
+					<th>Montant</th>
 				</tr>
-			<?php } ?>
-		</table>
+
+				<?php foreach($action->listeTransactions as $transaction) { ?> 
+					<tr>
+						<td> <?= $transaction["typeTransactionNom"] ?> </td>
+						<td> <?= $transaction["date"] ?> </td>
+						<td> <?= $transaction["description"]?> </td> 
+						<td> <?= $transaction["categorieNom"]?> </td>
+						<td> Sous-Categorie </td>  
+						<td> <?= $transaction["compteNom"]?> </td> 
+						<td class="text-right"> <?= $transaction["montant"]?> $</td> 
+					</tr>
+				<?php } ?>
+			</table>
+		</div>
 
 <?php
 

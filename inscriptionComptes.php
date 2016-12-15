@@ -8,9 +8,10 @@
 
 ?>
 
-		<h1 class="text-center">Inscription</h1>
-		<h2 class="text-center">Vos comptes</h2>
-	
+		<h1 class="text-center">Le budgeteur</h1>
+		<h2 class="text-center">Inscription</h2>
+
+		<!--Positionner selon grid-->	
 		<div class="col-md-5">
 
 			<form action="inscriptionComptes.php" method="post" onsubmit="return validate()" 
@@ -44,6 +45,7 @@
 			</form>
 		</div>
 
+		<!--Positionner selon le grid-->
 		<div class="col-md-5 col-md-offset-2">
 			
 			<table class="table table-hover table-striped">

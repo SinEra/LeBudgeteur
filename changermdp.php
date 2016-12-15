@@ -19,7 +19,7 @@
 			<div>Confirmer le mot de passe:</div>
 			<div><input type="password" name="passwordConfirm"></div>
 			
-			<input type="submit" value="Suivant"/ class="bouton">
+			<input type="submit" value="Réinitialiser" class="bouton">
 		</form>
 
 <?php

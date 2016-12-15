@@ -50,6 +50,7 @@
 
 						header("location:inscriptionComptes.php");
 						exit;
+						//Si erreur lors de ajouter (Email non unique)
 						} catch (Exception $e) {
 							$this->emailExistant = true;							
 						}
