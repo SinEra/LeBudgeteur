@@ -10,7 +10,7 @@
 	<div class="col-md-6 col-md-offset-3" style="margin-top:20px;">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Graphique
+				Graphique 
 			</div>
 			<div class="panel-body">
 				<canvas id="graphique" width="100" height="100"></canvas>
